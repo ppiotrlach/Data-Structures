@@ -7,8 +7,6 @@ using namespace std;
 // delete at begin, end, any place
 // add, delete, find
 
-
-
 struct Node
 {
     int data;
@@ -43,6 +41,20 @@ public:
             tail->next = temp;
             tail = tail->next;
         }
+    }
+
+    void deleteHead(){
+        deleteNumber(head->data); //deleteNumber method looks for the item to delete from head - therefore it can be done this way
+    }
+
+    void deleteTail(){
+        Node* temp = tail;
+
+        tail = tail->previous;
+        tail->next = NULL;
+        free(temp);
+        cout << "number deleted from tail"<<endl;
+        return;
     }
 
     void deleteNumber(int n){ //removes the first number from head with provided value
@@ -123,11 +135,17 @@ int main()
     a.add(6);
     a.add(7);
     a.print();
+    
+    // cout<< " testing"<< endl;
 
-    a.deleteNumber(1);
-    a.deleteNumber(6);
+    // a.deleteHead();
+    // a.print();
+
+    a.deleteTail();
+    a.print();
 
     a.print();
+
 
     return 0;
 }
