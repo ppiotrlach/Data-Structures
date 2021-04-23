@@ -66,7 +66,7 @@ class Dynamic_Array{
 
 
     void insert(int number, int position){
-        if(position <=0 || position>size){//check that the given position is within the range 
+        if(position <0 || position>=size){//check that the given position is within the range 
             cout<<"invalid position"<<endl;
             return;
         }
@@ -140,7 +140,10 @@ int main(){
     
     dynamic_array.print();
 
-    dynamic_array.swap(0,1);
+    dynamic_array.insert(2,-1);
+    dynamic_array.insert(3,0);
+    dynamic_array.insert(4,1);
+    dynamic_array.insert(5,2);
 
     dynamic_array.print();
 
