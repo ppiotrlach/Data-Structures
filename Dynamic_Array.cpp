@@ -52,13 +52,39 @@ class Dynamic_Array{
     ~Dynamic_Array() {
         delete[] array;
     }
+    
+    void swap(int position1, int position2){
+        if(position1 <0 || position1>size-1 || position2 <0 || position2>size-1){//check that the given position is within the range 
+            cout<<"invalid position"<<endl;
+            return;
+        }
+        cout<< "swapping " << array[position1]<< " with " << array[position2]<<endl;
+        int buffor = array[position1];
+        array[position1] = array[position2];
+        array[position2] = buffor;
+    }
+
+
+    void insert(int number, int position){
+        if(position <=0 || position>size){//check that the given position is within the range 
+            cout<<"invalid position"<<endl;
+            return;
+        }
+        array[position] = number;
+    }
 
     void append(int number){
         appendAt(number,size);
+        // cout<<size;
     }
 
     void appendAt(int number, int position){
-        assert(position >=0 && position<=size); //check that the given position is within the range 
+        
+        if(position <0 || position>size){//check that the given position is within the range 
+            cout<<"invalid position"<<endl;
+            return;
+        }
+
         if (size==volume){
             resize_up();
         }
@@ -90,12 +116,17 @@ class Dynamic_Array{
     }
 
     void print(){
+        if(size==0){
+            cout<<"array is empty"<<endl;
+            return;
+        }
+
         cout << "array_size = " << size << " array_volume = " << volume << endl << "[";
         for (size_t i = 0; i < size -1; i++)
         {
             cout << array[i] << " ";
         }
-        cout << array [size -1] << "]"<<endl;
+        cout << array [size -1] << "]"<<endl<<endl;
         
     }
 };
@@ -106,21 +137,12 @@ int main(){
     Dynamic_Array dynamic_array;
     dynamic_array.append(1);
     dynamic_array.append(2);
-    dynamic_array.append(3);
-    dynamic_array.append(4);
-    dynamic_array.append(5);
-    dynamic_array.append(6);
-    dynamic_array.append(7);
-    dynamic_array.append(8);
-    dynamic_array.append(9);
-    dynamic_array.append(0);
-    dynamic_array.append(0);
+    
+    dynamic_array.print();
 
-    cout << dynamic_array.get_number(0)<<endl;
+    dynamic_array.swap(0,1);
 
-    cout << dynamic_array.get_number(3)<<endl;
-
-    cout << dynamic_array.get_number(4)<<endl;
+    dynamic_array.print();
 
     return 0;
 }
