@@ -1,5 +1,4 @@
 #include <iostream>
-#include <assert.h>
 
 using namespace std;
 
@@ -53,6 +52,10 @@ class Dynamic_Array{
         delete[] array;
     }
     
+    int getSize(){
+        return size;
+    }
+
     void swap(int position1, int position2){
         if(position1 <0 || position1>size-1 || position2 <0 || position2>size-1){//check that the given position is within the range 
             cout<<"invalid position"<<endl;
@@ -97,7 +100,10 @@ class Dynamic_Array{
     }
 
       void deleteAt(int position){
-        assert(position >=0 && position<=size); //check that the given position is within the range
+        if(position >=0 && position<=size){ //check that the given position is within the range
+            cout<< "invalid position"<<endl;
+            return;
+        }
 
         if(size <= volume/2 && volume > INITIAL_VOLUME){
             resize_down();
@@ -111,8 +117,8 @@ class Dynamic_Array{
 
     }
 
-    int get_number(int position){
-        return *array + position;
+    int getNumber(int position){
+        return array[position];
     }
 
     void print(){
@@ -137,13 +143,14 @@ int main(){
     Dynamic_Array dynamic_array;
     dynamic_array.append(1);
     dynamic_array.append(2);
+    dynamic_array.append(3);
+    dynamic_array.append(4);
+    dynamic_array.append(5);
+    dynamic_array.append(6);
     
     dynamic_array.print();
 
-    dynamic_array.insert(2,-1);
-    dynamic_array.insert(3,0);
-    dynamic_array.insert(4,1);
-    dynamic_array.insert(5,2);
+    dynamic_array.swap(0,5);
 
     dynamic_array.print();
 
