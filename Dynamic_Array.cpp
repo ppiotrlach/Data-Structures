@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Dynamic_Array.h"
 
 using namespace std;
@@ -143,21 +142,21 @@ void Dynamic_Array::print()
          << endl;
 }
 
-// int main(){
+int main(){
 
-//     Dynamic_Array dynamic_array;
-//     dynamic_array.append(1);
-//     dynamic_array.append(2);
-//     dynamic_array.append(3);
-//     dynamic_array.append(4);
-//     dynamic_array.append(5);
-//     dynamic_array.append(6);
+    Dynamic_Array dynamic_array;
+    dynamic_array.append(1);
+    dynamic_array.append(2);
+    dynamic_array.append(3);
+    dynamic_array.append(4);
+    dynamic_array.append(5);
+    dynamic_array.append(6);
 
-//     dynamic_array.print();
+    dynamic_array.print();
 
-//     dynamic_array.swap(0,5);
+    dynamic_array.swap(0,5);
 
-//     dynamic_array.print();
+    dynamic_array.print();
 
-//     return 0;
-// }
+    return 0;
+}

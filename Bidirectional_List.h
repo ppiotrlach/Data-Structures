@@ -6,6 +6,11 @@ struct Node
 
     Node *previous;
     Node *next;
+
+    ~Node(){
+        delete previous;
+        delete next;
+    }
 };
 
 class Bidirectional_List
@@ -16,6 +21,26 @@ private:
 
 public:
     Bidirectional_List();
+
+    Node* getHead(){
+        return head;
+    }
+
+    Node* getTail(){
+        return tail;
+    }
+
+    Node* findNode(int data);
+
+    //n = number, data of Node
+
+    void addAfter(int nodeValue, int newNodeValue);
+
+    void addBefore(int nodeValue, int newNodeValue);
+
+    void deleteAfter(int nodeValue);
+
+    void deleteBefore(int nodeValue);
 
     void add(int n);
 
