@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 #include "Dynamic_Array.cpp"
@@ -23,7 +25,7 @@ private:
         return i * 2 + 2;
     }
 
-    void heapify(int heapSize, int parent);
+    void heapify(int parent);
 
 public:
     Heap();

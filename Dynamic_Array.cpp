@@ -4,7 +4,7 @@ using namespace std;
 
 //increases the volume of the array (volume*growth_factory)
 void Dynamic_Array::resize_up(){
-    cout << "resizing array up: old value of volume = " << volume << " ,new value = " << volume * GROWTH_FACTOR << endl;
+    // cout << "resizing array up: old value of volume = " << volume << " ,new value = " << volume * GROWTH_FACTOR << endl;
     volume *= GROWTH_FACTOR;
     int *temporary_array = new int[volume]; //creating an temporary array
     copy(array, temporary_array, size); //copy array to temporary array
@@ -15,7 +15,7 @@ void Dynamic_Array::resize_up(){
 //reduces the volume of the array (volume/growth_factory), similar logic to above function
 void Dynamic_Array::resize_down()
 {
-    cout << "resizing array down: old value of volume = " << volume << " ,new value = " << volume / GROWTH_FACTOR << endl;
+    // cout << "resizing array down: old value of volume = " << volume << " ,new value = " << volume / GROWTH_FACTOR << endl;
     volume /= GROWTH_FACTOR;
     int *temporary_array = new int[volume];
     copy(array, temporary_array, size);
@@ -25,7 +25,7 @@ void Dynamic_Array::resize_down()
 
 void Dynamic_Array::copy(int *array_from, int *array_to, int size) //simple copy method
 {
-    cout << "copying numbers..." << endl;
+    // cout << "copying numbers..." << endl;
     for (size_t i = 0; i < size; i++)
     {
         array_to[i] = array_from[i];
@@ -54,7 +54,7 @@ void Dynamic_Array::swap(int position1, int position2) //swap method, useful in 
         cout << "invalid position" << endl;
         return;
     }
-    cout << "swapping " << array[position1] << " with " << array[position2] << endl;
+    // cout << "swapping " << array[position1] << " with " << array[position2] << endl;
     int buffor = array[position1];
     array[position1] = array[position2];
     array[position2] = buffor;
