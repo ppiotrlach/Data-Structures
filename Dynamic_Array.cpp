@@ -2,17 +2,17 @@
 
 using namespace std;
 
-
+//increases the volume of the array (volume*growth_factory)
 void Dynamic_Array::resize_up(){
     cout << "resizing array up: old value of volume = " << volume << " ,new value = " << volume * GROWTH_FACTOR << endl;
     volume *= GROWTH_FACTOR;
-    int *temporary_array = new int[volume];
-    copy(array, temporary_array, size);
-    delete[] array;
-    array = temporary_array;
+    int *temporary_array = new int[volume]; //creating an temporary array
+    copy(array, temporary_array, size); //copy array to temporary array
+    delete[] array; //remove unnecessary array
+    array = temporary_array; //new array with GROWTH_FACTOR times greater volume
 }
 
-//reduces the volume of the array (volume/growth_factory)
+//reduces the volume of the array (volume/growth_factory), similar logic to above function
 void Dynamic_Array::resize_down()
 {
     cout << "resizing array down: old value of volume = " << volume << " ,new value = " << volume / GROWTH_FACTOR << endl;
@@ -23,7 +23,7 @@ void Dynamic_Array::resize_down()
     array = temporary_array;
 }
 
-void Dynamic_Array::copy(int *array_from, int *array_to, int size)
+void Dynamic_Array::copy(int *array_from, int *array_to, int size) //simple copy method
 {
     cout << "copying numbers..." << endl;
     for (size_t i = 0; i < size; i++)
@@ -47,7 +47,7 @@ int Dynamic_Array::getSize()
     return size;
 }
 
-void Dynamic_Array::swap(int position1, int position2)
+void Dynamic_Array::swap(int position1, int position2) //swap method, useful in operations on the heap
 {
     if (position1 < 0 || position1 > size - 1 || position2 < 0 || position2 > size - 1)
     { //check that the given position is within the range
@@ -60,7 +60,7 @@ void Dynamic_Array::swap(int position1, int position2)
     array[position2] = buffor;
 }
 
-void Dynamic_Array::insert(int number, int position)
+void Dynamic_Array::insert(int number, int position) //replace the old number on the given position
 {
     if (position < 0 || position >= size)
     { //check that the given position is within the range
@@ -70,13 +70,12 @@ void Dynamic_Array::insert(int number, int position)
     array[position] = number;
 }
 
-void Dynamic_Array::append(int number)
+void Dynamic_Array::append(int number) //append number on last position
 {
     appendAt(number, size);
-    // cout<<size;
 }
 
-void Dynamic_Array::appendAt(int number, int position)
+void Dynamic_Array::appendAt(int number, int position) //append number on given position
 {
 
     if (position < 0 || position > size)
@@ -85,11 +84,11 @@ void Dynamic_Array::appendAt(int number, int position)
         return;
     }
 
-    if (size == volume)
+    if (size == volume) //check if size is equal to volume of array
     {
-        resize_up();
+        resize_up(); //if so resize up the volume of array
     }
-    //move numbers up in an array to create a place to new number, we don't want to override the old one
+    //move numbers up in an array to create a place to new number, we don't want to override the old one like in insert function
     for (int i = size; i > position; i--)
     {
         array[i] = array[i - 1];
@@ -98,15 +97,20 @@ void Dynamic_Array::appendAt(int number, int position)
     array[position] = number;
 }
 
-void Dynamic_Array::deleteAt(int position)
+void Dynamic_Array::deleteAt(int position) //delete number at given position
 {
-    if (position >= 0 && position <= size)
+    if(size==0){
+        cout << "array is empty" <<endl;
+        return;
+    }
+
+    if (position > 0 && position <= size)
     { //check that the given position is within the range
         cout << "invalid position" << endl;
         return;
     }
 
-    if (size <= volume / 2 && volume > INITIAL_VOLUME)
+    if (size <= volume / GROWTH_FACTOR && volume > INITIAL_VOLUME) //decrease if large array capacity is not used 
     {
         resize_down();
     }
@@ -140,23 +144,4 @@ void Dynamic_Array::print()
     }
     cout << array[size - 1] << "]" << endl
          << endl;
-}
-
-int main(){
-
-    Dynamic_Array dynamic_array;
-    dynamic_array.append(1);
-    dynamic_array.append(2);
-    dynamic_array.append(3);
-    dynamic_array.append(4);
-    dynamic_array.append(5);
-    dynamic_array.append(6);
-
-    dynamic_array.print();
-
-    dynamic_array.swap(0,5);
-
-    dynamic_array.print();
-
-    return 0;
 }
