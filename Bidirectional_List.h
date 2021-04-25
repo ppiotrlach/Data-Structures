@@ -46,9 +46,11 @@ public:
 
     void deleteHead();
 
-    // void deleteTail();
+    void deleteTail();
 
     void deleteNumber(int n);
 
     void print();
+
+    void printFromTail();
 };
