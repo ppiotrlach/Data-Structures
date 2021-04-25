@@ -97,6 +97,27 @@ void Dynamic_Array::appendAt(int number, int position) //append number on given 
     array[position] = number;
 }
 
+void Dynamic_Array::deleteFirstNumber(){ //delete first number of array (position 0)
+    deleteAt(0);
+}
+
+void Dynamic_Array::deleteLastNumber(){//delete last number of array (position size-1)
+    deleteAt(size-1);
+}
+
+void Dynamic_Array::deleteNumber(int number){ //delete number, first from the beggining if the numbers in the array are reapeted
+
+    for (size_t i = 0; i < size; i++)
+    {
+        if(array[i] == number){
+            deleteAt(i);
+            return;
+        }
+    }
+    cout<< "there is no number "<<number<<" in array"<<endl;
+    
+}
+
 void Dynamic_Array::deleteAt(int position) //delete number at given position
 {
     if(size==0){
@@ -104,7 +125,7 @@ void Dynamic_Array::deleteAt(int position) //delete number at given position
         return;
     }
 
-    if (position > 0 && position <= size)
+    if (position < 0 && position >= size)
     { //check that the given position is within the range
         cout << "invalid position" << endl;
         return;
@@ -145,3 +166,4 @@ void Dynamic_Array::print()
     cout << array[size - 1] << "]" << endl
          << endl;
 }
+

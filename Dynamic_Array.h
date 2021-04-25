@@ -34,6 +34,12 @@ public:
 
     void appendAt(int number, int position);
 
+    void deleteFirstNumber();
+
+    void deleteLastNumber();
+
+    void deleteNumber(int number);
+
     void deleteAt(int position);
 
     int getNumber(int position);
