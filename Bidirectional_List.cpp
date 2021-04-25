@@ -156,8 +156,21 @@ void Bidirectional_List::deleteHead()
         cout << "there is empty list" << endl;
         return;
     }
+    if (head == tail)
+    {
+        head = NULL;
+        free(head);
+        return;
+    }
+    Node *temp;
+    temp = head;
+    head = head->next;
+    head->previous = NULL;
+    free(temp);
+    cout << "number deleted from head" << endl;
+    return;
 
-    deleteNumber(head->data); //deleteNumber method looks for the item to delete from head - therefore it can be done this way
+    
 }
 
 void Bidirectional_List::deleteTail()
@@ -186,64 +199,30 @@ void Bidirectional_List::deleteTail()
 void Bidirectional_List::deleteNumber(int n)
 { //removes the first number from head with provided value
 
-    if (head == NULL)
-    {
-        cout << "there is empty list" << endl;
+    Node *temp = findNode(n); //in first order find interesting node
+    if(temp==NULL){
         return;
     }
-    if (head == tail)
+    else if (temp == tail) //check if given number is not a tail
     {
-        head = NULL;
-        free(head);
+        deleteTail();
         return;
     }
-
-    Node *temp = head;
-    Node *temp2;
-
-    if (head->data == n)
-    {
-        if (head->next == NULL)
-        {
-            head = NULL;
-            free(head);
-        }
-        temp = head;
-        head = head->next;
-        head->previous = NULL;
-        free(temp);
-        cout << "number " << n << " deleted from head" << endl;
+    else if(temp == head){ //check if given number is not a head
+        deleteHead();
         return;
     }
-    else if (tail->data == n)
+    else if (temp != NULL)
     {
-        temp = tail;
-        tail = tail->previous;
-        tail->next = NULL;
-        free(temp);
-        cout << "number " << n << " deleted from tail" << endl;
-        return;
-    }
-    else
-    {
-        while (temp->next->next != NULL)
-        {
-            if (temp->next->data == n)
-            {
-                free(temp->next);
-
-                temp2 = temp->next->next;
-                temp->next = temp2;
-                temp2->previous = temp;
-
-                cout << "number " << n << " deleted" << endl;
-                return;
-            }
-            temp = temp->next;
-        }
+        Node *temp2 = temp;
+        temp2 = temp2->previous;
+        temp = temp ->next;
+        free(temp2->next);
+        temp2->next = temp;
+        temp ->previous = temp2;
     }
 
-    cout << "there is no number " << n << endl;
+    cout << "deleted number " <<n<<endl;
 }
 
 void Bidirectional_List::print() //methods print list from the head
@@ -253,9 +232,6 @@ void Bidirectional_List::print() //methods print list from the head
         cout << "list is empty" << endl;
         return;
     }
-
-    // cout << "head = " << head->data << " tail = " << tail->data << endl;
-
     Node *temp = head;
 
     cout << "NULL <> ";
@@ -275,8 +251,6 @@ void Bidirectional_List::printFromTail() //methods print list from the tail (rev
         cout << "list is empty" << endl;
         return;
     }
-
-    // cout << "head = " << head->data << " tail = " << tail->data << endl;
 
     Node *temp = tail;
 

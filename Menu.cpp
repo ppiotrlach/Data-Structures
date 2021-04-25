@@ -9,6 +9,7 @@ static int getInputFromUser()
 {
 
     bool isInputCorrect = false;
+    bool minus = false;
     string input;
 
     while (!isInputCorrect)
@@ -19,9 +20,16 @@ static int getInputFromUser()
         {
             if (std::isdigit(c) == 0)
             {
-                isInputCorrect = false;
-                cout << "incorrect input, try again" << endl
-                     << ">";
+                if(c == '-' && !minus){
+                    minus = true;
+                }
+                else{
+                    isInputCorrect = false;
+                    cout << "incorrect input, try again" << endl
+                    << ">";
+                break;
+                }
+                
             }
         }
     }
