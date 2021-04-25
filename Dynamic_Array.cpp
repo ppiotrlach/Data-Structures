@@ -125,7 +125,7 @@ void Dynamic_Array::deleteAt(int position) //delete number at given position
         return;
     }
 
-    if (position < 0 && position >= size)
+    if (position < 0 || position >= size)
     { //check that the given position is within the range
         cout << "invalid position" << endl;
         return;
