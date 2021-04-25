@@ -2,7 +2,6 @@
 
 using namespace std;
 
-//TODO DELETE AFTER, DELETE BEFORE NODE
 
 Bidirectional_List::Bidirectional_List()
 {
@@ -21,8 +20,9 @@ void Bidirectional_List::add(int n) //adds a number behind the tail
         head = temp;
         tail = temp;
     }
-    else
+    else //if its not first element
     {
+        //assigning the right pointers
         tail->next = temp;
         temp->previous = tail;
         tail = tail->next;
@@ -31,7 +31,7 @@ void Bidirectional_List::add(int n) //adds a number behind the tail
     }
 }
 
-Node *Bidirectional_List::findNode(int n)
+Node *Bidirectional_List::findNode(int n) //method return the first found node from head with provided number 
 {
     if (head == NULL)
     {
@@ -56,30 +56,52 @@ Node *Bidirectional_List::findNode(int n)
     return NULL;
 }
 
-void Bidirectional_List::addAfter(int nodeValue, int newNodeValue)
+void Bidirectional_List::addAfter(int nodeValue, int newNodeValue) //method adds number newNodeValue after provided nodeValue
 {
-    Node *temp = findNode(nodeValue);
-    if (temp != NULL)
+    Node *temp = findNode(nodeValue); //in first order find interesting node
+    if (temp != NULL)   
     {
-
+        
         Node *addedNode = new Node;
 
+        //playing with pointers, assigning the right pointers
         addedNode->data = newNodeValue;
         addedNode->previous = temp;
         addedNode->next = temp->next;
         temp->next = addedNode;
 
-        if (temp == tail)
+        if (temp == tail) //check if added node is a tail
         {
             tail = addedNode;
         }
     }
 }
 
-void Bidirectional_List::deleteAfter(int nodeValue)
+
+void Bidirectional_List::addBefore(int nodeValue, int newNodeValue) //method adds number newNodeValue before provided nodeValue
 {
-    Node *temp = findNode(nodeValue);
-    if (temp == tail)
+    Node *temp = findNode(nodeValue); //in first order find interesting node
+    if (temp != NULL)
+    {
+        Node *addedNode = new Node;
+
+        //playing with pointers, assigning the right pointers
+        addedNode->data = newNodeValue;
+        addedNode->next = temp;
+        addedNode->previous = temp->previous;
+        temp->previous = addedNode;
+
+        if (temp == head) //check if added node is a head
+        {
+            head = addedNode;
+        }
+    }
+}
+
+void Bidirectional_List::deleteAfter(int nodeValue) //method deletes first number after provided nodeValue from head
+{
+    Node *temp = findNode(nodeValue); //in first order find interesting node
+    if (temp == tail) //check if given number is not a tail
     {
         cout << "there is nothing after tail" << endl;
         return;
@@ -101,7 +123,7 @@ void Bidirectional_List::deleteAfter(int nodeValue)
     }
 }
 
-void Bidirectional_List::deleteBefore(int nodeValue)
+void Bidirectional_List::deleteBefore(int nodeValue) //method deletes first number before provided nodeValue from head
 {
     Node *temp = findNode(nodeValue);
     if (temp == head)
@@ -126,24 +148,6 @@ void Bidirectional_List::deleteBefore(int nodeValue)
     }
 }
 
-void Bidirectional_List::addBefore(int nodeValue, int newNodeValue)
-{
-    Node *temp = findNode(nodeValue);
-    if (temp != NULL)
-    {
-        Node *addedNode = new Node;
-
-        addedNode->data = newNodeValue;
-        addedNode->next = temp;
-        addedNode->previous = temp->previous;
-        temp->previous = addedNode;
-
-        if (temp == head)
-        {
-            head = addedNode;
-        }
-    }
-}
 
 void Bidirectional_List::deleteHead()
 {
@@ -242,7 +246,7 @@ void Bidirectional_List::deleteNumber(int n)
     cout << "there is no number " << n << endl;
 }
 
-void Bidirectional_List::print()
+void Bidirectional_List::print() //methods print list from the head
 {
     if (head == NULL)
     {
@@ -264,7 +268,7 @@ void Bidirectional_List::print()
     delete temp;
 }
 
-void Bidirectional_List::printFromTail()
+void Bidirectional_List::printFromTail() //methods print list from the tail (reverse to print method)
 {
     if (head == NULL)
     {
@@ -284,48 +288,4 @@ void Bidirectional_List::printFromTail()
     }
     cout << "NULL" << endl;
     delete temp;
-}
-
-int main()
-{
-    Bidirectional_List a;
-
-    // a.deleteHead();
-
-    a.add(1);
-    a.add(2);
-    a.add(3);
-    a.add(4);
-    a.add(5);
-    a.add(6);
-    a.add(7);
-
-    a.print();
-    a.printFromTail();
-
-    a.deleteAfter(1);
-    a.deleteAfter(1);
-    a.deleteAfter(1);
-    a.deleteAfter(1);
-    a.deleteAfter(1);
-    a.deleteAfter(1);
-    a.deleteAfter(1);
-    a.print();
-    // a.print();
-    // a.print();
-
-    // a.deleteBefore(4);
-    // a.print();
-    // a.printFromTail();
-
-    // a.deleteBefore(4);
-    // a.print();
-
-    // a.deleteBefore(4);
-    // a.print();
-
-    // a.deleteBefore(4);
-    // a.print();
-
-    return 0;
 }
