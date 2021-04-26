@@ -149,6 +149,17 @@ int Dynamic_Array::getNumber(int position)
     return array[position];
 }
 
+int Dynamic_Array::findNumber(int number){
+    for (size_t i = 0; i < size; i++)
+    {
+        if(array[i] == number){
+            return i;
+        }
+    }
+    cout<< "there is no number " << number<<endl;;
+    return -1;
+}
+
 void Dynamic_Array::print()
 {
     if (size == 0)
@@ -167,3 +178,27 @@ void Dynamic_Array::print()
          << endl;
 }
 
+int main(){
+
+    Dynamic_Array ar;
+
+    ar.append(0);
+    ar.append(1);
+    ar.append(2);
+    ar.append(3);
+    ar.append(4);
+    ar.append(5);
+
+    ar.findNumber(-1);
+    ar.findNumber(0);
+    ar.findNumber(1);
+    ar.findNumber(2);
+    ar.findNumber(3);
+    ar.findNumber(4);
+    ar.findNumber(5);
+    ar.findNumber(6);
+
+
+
+    return 0;
+}

@@ -42,7 +42,9 @@ public:
 
     void deleteAt(int position);
 
-    int getNumber(int position);
+    int getNumber(int position); //returns number on position
+
+    int findNumber(int number); //returns position of number
 
     void print();
 };
