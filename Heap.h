@@ -34,7 +34,9 @@ public:
 
     int getRoot();
 
-    void add(int n);
+    void append(int n);
+
+    void addAndHeapify(int n);
 
     void doHeapify();
 

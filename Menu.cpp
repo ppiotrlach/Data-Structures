@@ -93,10 +93,11 @@ static void heapMenu(){
     cout << "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_" << endl
          << endl;
 
-    cout << "1. Append number" << endl;
-    cout << "2. Delete root" << endl;
-    cout << "3. Heapify" << endl;
-    cout << "4. Exit to the main menu " << endl;
+    cout << "1. Append number (without heapify)" << endl;
+    cout << "2. Add number (with heapify)" << endl;
+    cout << "3. Delete root" << endl;
+    cout << "4. Heapify" << endl;
+    cout << "5. Exit to the main menu " << endl;
     cout << endl;
 }
 
@@ -235,15 +236,20 @@ int main()
                     case 1:
                         cout<<"Enter number to append"<<endl<<">";
                         choice = getInputFromUser();
-                        heap.add(choice);
+                        heap.append(choice);
                         break;
                     case 2:
-                        heap.deleteMax();
+                        cout <<"Enter number to add"<<endl<<">";
+                        choice = getInputFromUser();
+                        heap.addAndHeapify(choice);
                         break;
                     case 3:
-                        heap.doHeapify();
+                        heap.deleteMax();
                         break;
                     case 4:
+                        heap.doHeapify();
+                        break;
+                    case 5:
                         stayInLoop = false;
                         break;
                     default:

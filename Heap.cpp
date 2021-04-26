@@ -47,10 +47,22 @@ int Heap::getRoot()
     return heap.getNumber(0);
 }
 
-void Heap::add(int n)
+
+void Heap::append(int n){ //makes more sense when loading a large amount of items into the heap, then we call doHeapify 
+    heap.append(n);
+}
+
+
+void Heap::addAndHeapify(int n) //add number and restore the functional property of heap
 {
     heap.append(n);
-    // doHeapify();
+
+    int i = heap.getSize() - 1;
+    while (i != 0 && heap.getNumber(parent(i)) < heap.getNumber(i))
+    {
+        heap.swap(parent(i), i);
+        i = parent(i);
+    }
 }
 
 void Heap::doHeapify()
@@ -63,10 +75,10 @@ void Heap::doHeapify()
     }
 }
 
-void Heap::deleteMax() //delete the root (number on first position of array)
+void Heap::deleteMax() //delete the root (number on first position of array) and restore property of heap
 {
     heap.deleteAt(0);
-    // doHeapify();
+    doHeapify();
 }
 
 void Heap::print()
