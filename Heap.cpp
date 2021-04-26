@@ -53,7 +53,7 @@ void Heap::append(int n){ //makes more sense when loading a large amount of item
 }
 
 
-void Heap::addAndHeapify(int n) //add number and restore the functional property of heap
+void Heap::addAndHeapify(int n) //add number and restore the functional property of heap (only if we use this method, call doHeapify after using append )
 {
     heap.append(n);
 

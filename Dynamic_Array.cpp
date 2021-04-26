@@ -177,28 +177,3 @@ void Dynamic_Array::print()
     cout << array[size - 1] << "]" << endl
          << endl;
 }
-
-int main(){
-
-    Dynamic_Array ar;
-
-    ar.append(0);
-    ar.append(1);
-    ar.append(2);
-    ar.append(3);
-    ar.append(4);
-    ar.append(5);
-
-    ar.findNumber(-1);
-    ar.findNumber(0);
-    ar.findNumber(1);
-    ar.findNumber(2);
-    ar.findNumber(3);
-    ar.findNumber(4);
-    ar.findNumber(5);
-    ar.findNumber(6);
-
-
-
-    return 0;
-}
