@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "Bidirectional_List.h"
 #include "Dynamic_Array.h"
@@ -110,8 +111,76 @@ int main()
     Heap heap;
 
     int choice, choice2;
-    bool stayInLoop;
+    bool stayInLoop = true, dataLoaded = false;
 
+    string filename = "tdata.txt";
+
+    //reading file to array
+    cout<<endl<<"Do you want to load test data into structures?"<<endl;
+    cout<<"1.Yes 2.No"<<endl<<">";
+    choice = getInputFromUser();
+
+    while(stayInLoop)
+    switch(choice){
+        case 1:
+            while(stayInLoop){
+                cout<<"1.Load own data"<<endl;
+                cout<<"2.Load creator data (50 random numbers to each structure, if you want you can just edit tdata.txt, its attached to the project)"<<endl<<">";
+                choice = getInputFromUser();
+                switch(choice){
+                    case 1:
+                        cout<<"Drag and drop your file with data into project folder and enter your filename.txt"<<endl<<">";
+                        cin >> filename;
+                        stayInLoop = false;
+                        break;
+                    case 2:
+                        stayInLoop = false;
+                        break;
+                    default:
+                        cout << "incorrect input, enter 1 or 2" << endl;
+                        break;
+                }
+                ifstream file(filename);
+                string line;
+
+                int lineCounter = 0;
+
+                if (file.is_open())
+                {
+                    while (getline(file, line))
+                    {
+                        if (lineCounter > 0)
+                        {
+                            int readNumber = stoi(line);
+                            dynamic_array.append(readNumber);
+                            bidi_list.add(readNumber);
+                            heap.addAndHeapify(readNumber);
+                        }
+                        lineCounter++;
+                    }
+                    cout<<"Data loaded into structures"<<endl<<endl;
+                }
+                else{
+                    cout << "Can not open file, restart the program and try again if you want..." << endl;
+                }
+                file.close();
+                stayInLoop = false;
+                }
+
+        case 2:
+            stayInLoop = false;
+            break;
+
+        default:
+            cout << "incorrect input, enter 1 or 2" << endl;
+            break;
+    }
+
+
+
+
+
+    //main content
     while (true)
     {
         stayInLoop = true;

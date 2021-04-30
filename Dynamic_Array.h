@@ -9,12 +9,6 @@ private:
     int volume = size;  //current volume of array
     // const int GROWTH_FACTOR = 2;  //determines how the volume of the array will increase (new value of volume = volume*GROWTH_FACTOR;
 
-    //resizing up array volume(volume*growth_factor)
-    void resize_up();
-
-    //reduces the volume of the array (volume/growth_factory)
-    void resize_down();
-
     void copy(int *array_from, int *array_to, int size);
 
 public:

@@ -2,22 +2,15 @@
 #include <iostream>
 using namespace std;
 
-//increases the volume of the array
-void Dynamic_Array::resize_up()
+
+Dynamic_Array::Dynamic_Array()
 {
-    int *temporary_array = new int[size + 1]; //creating an temporary array
-    copy(array, temporary_array, size);       //copy array to temporary array
-    delete[] array;                           //remove unnecessary array
-    array = temporary_array;                  //new array with GROWTH_FACTOR times greater volume
+    array = nullptr;
 }
 
-//reduces the volume of the array
-void Dynamic_Array::resize_down()
+Dynamic_Array::~Dynamic_Array()
 {
-    int *temporary_array = new int[size];
-    copy(array, temporary_array, size);
     delete[] array;
-    array = temporary_array;
 }
 
 void Dynamic_Array::copy(int *array_from, int *array_to, int size) //simple copy method
@@ -27,16 +20,6 @@ void Dynamic_Array::copy(int *array_from, int *array_to, int size) //simple copy
     {
         array_to[i] = array_from[i];
     }
-}
-
-Dynamic_Array::Dynamic_Array()
-{
-    
-}
-
-Dynamic_Array::~Dynamic_Array()
-{
-    delete[] array;
 }
 
 int Dynamic_Array::getSize()
@@ -89,7 +72,12 @@ void Dynamic_Array::appendAt(int number, int position) //append number on given 
     else
     {
         size++;
-        resize_up(); //if so resize up the volume of array
+        //below code resizes up the array
+        int *temporary_array = new int[size+1]; //creating an temporary array
+        copy(array, temporary_array, size);       //copy array to temporary array
+        delete[] array;                           //remove unnecessary array
+        array = temporary_array;      
+           
         for (int i = size; i > position; i--)
         { //move numbers up in an array to create a place to new number, we don't want to override the old one like in insert function
             array[i] = array[i - 1];
@@ -150,7 +138,13 @@ void Dynamic_Array::deleteAt(int position) //delete number at given position
     }
 
     size--;
-    resize_down();
+    
+    //below code resizes down array
+    int *temporary_array = new int[size];
+    copy(array, temporary_array, size);
+    delete[] array;
+    array = temporary_array;
+
     //move the numbers to fill the empty space
 }
 
@@ -191,18 +185,18 @@ void Dynamic_Array::print()
          << endl;
 }
 
-int main()
-{
-    Dynamic_Array ar;
+// int main()
+// {
+//     Dynamic_Array ar;
 
-    for (size_t i = 0; i < 100; i++)
-    {
-        ar.append(i);
-    }
-    ar.print();
+//     for (size_t i = 0; i < 100; i++)
+//     {
+//         ar.append(i);
+//     }
+//     ar.print();
 
-    ar.deleteFirstNumber();
-    ar.print();
+//     ar.deleteFirstNumber();
+//     ar.print();
 
-    return 0;
-}
+//     return 0;
+// }

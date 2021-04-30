@@ -5,8 +5,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "Bidirectional_List.cpp"
-#include "Heap.cpp" //plus heap includes Dynamic_Array.cpp
+#include "Bidirectional_List.h"
+#include "Heap.h"
+#include "Dynamic_Array.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ static int getAmountOfData(string fileName)
 int main()
 {
 
-    string fileName = "test_data/2m/tdata3.txt";
+    string fileName = "test_data/500k/tdata3.txt";
 
     int amountOfData = getAmountOfData(fileName);
 
@@ -72,13 +73,11 @@ int main()
     //---------------DYNAMIC_ARRAY
     int randomNumber = (rand() % amountOfData) + 1;
 
-     gettimeofday(&start, NULL);
-
+    gettimeofday(&start, NULL);
     for (int x : array)
     {
         dynamic_array.append(x);
     }
-
     gettimeofday(&end, NULL);
 
     seconds = end.tv_sec - start.tv_sec;
@@ -89,14 +88,11 @@ int main()
     printf("dynamic array: %ld milliseconds\n", mtime);
 
     //---------------BIDI_LIST
-
-     gettimeofday(&start, NULL);
-
+    gettimeofday(&start, NULL);
     for (int x : array)
     {
         bidi.add(x);
     }
-
     gettimeofday(&end, NULL);
 
     seconds = end.tv_sec - start.tv_sec;
@@ -107,9 +103,7 @@ int main()
     printf("bidirectional list: %ld milliseconds\n", mtime);
 
     // ---------------HEAP
-
     gettimeofday(&start, NULL);
-
     for (int x : array)
     {
         heap.addAndHeapify(x);
@@ -123,6 +117,8 @@ int main()
     mtime = ((seconds)*1000 + useconds / 1000.0) + 0.5;
 
     printf("heap : %ld milliseconds\n", mtime);
+
+    cout<<"-----------------------------------"<<endl;
 
     return 0;
 }
