@@ -1,15 +1,13 @@
 #pragma once
 
-#include <iostream>
-
 class Dynamic_Array
 {
 private:
     int *array;
     int size = 0;
-    const int INITIAL_VOLUME = 10; //initial volume of array
-    int volume = INITIAL_VOLUME;   //current volume of array
-    const int GROWTH_FACTOR = 2;   //determines how the volume of the array will increase (new value of volume = volume*GROWTH_FACTOR;
+    // const int INITIAL_VOLUME = 5; //initial volume of array
+    int volume = size;  //current volume of array
+    // const int GROWTH_FACTOR = 2;  //determines how the volume of the array will increase (new value of volume = volume*GROWTH_FACTOR;
 
     //resizing up array volume(volume*growth_factor)
     void resize_up();

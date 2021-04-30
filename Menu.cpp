@@ -1,7 +1,9 @@
 #include <iostream>
 
-#include "Bidirectional_List.cpp"
-#include "Heap.cpp" //plus heap includes Dynamic_Array.cpp
+#include "Bidirectional_List.h"
+#include "Dynamic_Array.h"
+#include "Heap.h" 
+
 
 using namespace std;
 
@@ -253,7 +255,7 @@ int main()
                         stayInLoop = false;
                         break;
                     default:
-                        cout << "incorrect input, enter a number from 1 to 4" << endl;
+                        cout << "incorrect input, enter a number from 1 to 5" << endl;
                         break;
                 }
             }

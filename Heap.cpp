@@ -1,5 +1,6 @@
-#include <iostream>
 #include "Heap.h"
+#include <iostream>
+
 
 using namespace std;
 
@@ -47,11 +48,10 @@ int Heap::getRoot()
     return heap.getNumber(0);
 }
 
-
-void Heap::append(int n){ //makes more sense when loading a large amount of items into the heap, then we call doHeapify 
+void Heap::append(int n)
+{ //makes more sense when loading a large amount of items into the heap, then we call doHeapify
     heap.append(n);
 }
-
 
 void Heap::addAndHeapify(int n) //add number and restore the functional property of heap (only if we use this method, call doHeapify after using append )
 {
@@ -105,3 +105,4 @@ void Heap::print()
     }
     cout << endl;
 }
+

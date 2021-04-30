@@ -1,9 +1,6 @@
+#include "Dynamic_Array.h"
+
 #pragma once
-
-#include <iostream>
-
-#include "Dynamic_Array.cpp"
-
 
 class Heap
 {
@@ -44,4 +41,3 @@ public:
 
     void print();
 };
-
